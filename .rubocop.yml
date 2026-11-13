@@ -8,9 +8,6 @@ AllCops:
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
-Style/StringLiteralsInInterpolation:
-  EnforcedStyle: double_quotes
-
 Layout/LineLength:
   Max: 120
 
@@ -21,5 +18,9 @@ Naming/PredicatePrefix:
   Enabled: false
 
 Style/Documentation:
+  Exclude:
+    - "test/**/*"
+
+Naming/VariableNumber:
   Exclude:
     - "test/**/*"

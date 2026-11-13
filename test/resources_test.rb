@@ -31,7 +31,8 @@ class ResourcesTest < Minitest::Test
 
   def test_generic_paginate
     stub_request(:get, "#{BASE}/campaigns").to_return(ok("campaigns_list.json"))
-    stub_request(:get, "#{BASE}/campaigns?cursor=c1_ZmFrZS1jdXJzb3ItcGFnZS0y").to_return(ok("campaigns_list_page2.json"))
+    stub_request(:get, "#{BASE}/campaigns?cursor=c1_ZmFrZS1jdXJzb3ItcGFnZS0y")
+      .to_return(ok("campaigns_list_page2.json"))
     enum = new_client.paginate("GET", "/campaigns")
     assert_kind_of Enumerator, enum
     assert_equal 3, enum.to_a.size

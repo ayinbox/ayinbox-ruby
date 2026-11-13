@@ -96,7 +96,7 @@ module Ayinbox
       code = string_or_nil(hash["code"])
       if code.nil?
         err = string_or_nil(hash["error"])
-        code = err if err && err.match?(/\A[a-z0-9_]+\z/)
+        code = err if err&.match?(/\A[a-z0-9_]+\z/)
       end
       code ||= DEFAULT_CODES[status] || (status >= 500 ? "internal_error" : "error")
       message = string_or_nil(hash["message"]) || (raw_body.to_s.empty? ? "HTTP #{status}" : raw_body.to_s[0, 500])

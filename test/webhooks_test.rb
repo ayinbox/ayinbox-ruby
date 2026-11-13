@@ -9,8 +9,8 @@ class WebhooksTest < Minitest::Test
     @v = fixture_json("webhook_signature.json")
   end
 
-  def verify(body: @v["body"], header: @v["header"], secret: @v["secret"], now: @v["timestamp"], **kw)
-    Ayinbox::Webhooks.verify_signature(body, header, secret, now: now, **kw)
+  def verify(body: @v["body"], header: @v["header"], secret: @v["secret"], now: @v["timestamp"], **options)
+    Ayinbox::Webhooks.verify_signature(body, header, secret, now: now, **options)
   end
 
   def test_computes_expected_signature

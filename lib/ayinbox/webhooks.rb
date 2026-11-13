@@ -21,7 +21,7 @@ module Ayinbox
       return false if tolerance.to_i <= 0 || (now.to_i - timestamp).abs > tolerance.to_i
 
       expected = compute_signature(payload, timestamp, secret)
-      signatures.any? { |sig| secure_compare(expected, sig) }
+      signatures.any? { |sig| secure_equal?(expected, sig) }
     end
 
     # Verifies, then parses the payload. Raises SignatureVerificationError when it does not verify.
@@ -54,7 +54,7 @@ module Ayinbox
       [timestamp, signatures]
     end
 
-    def secure_compare(left, right)
+    def secure_equal?(left, right)
       return false unless left.bytesize == right.bytesize
 
       result = 0
